@@ -17,7 +17,7 @@ body{width:1080px;height:1440px;font-family:Geist,sans-serif;color:#fff;-webkit-
  background:radial-gradient(ellipse 110% 38% at 50% 71%, rgb(28,14,18) 0%, rgba(11,11,13,0) 100%), #0b0b0d}
 .glow{position:absolute;left:0;top:0;width:1080px;height:1440px;filter:blur(26px);opacity:.62}
 .logo{position:absolute;top:86px;left:88px}
-.card{position:absolute;left:88px;right:88px;top:183px;height:747px;border-radius:36px;border:1.5px solid transparent;overflow:hidden;
+.card{position:absolute;left:88px;width:904px;top:183px;height:747px;border-radius:36px;border:1.5px solid transparent;overflow:hidden;
  box-shadow:0 30px 70px rgba(0,0,0,.55);
  background:linear-gradient(120deg,#191919 0%,#0b0b0b 90%) padding-box,linear-gradient(140deg,rgba(255,255,255,.3) 0%,rgba(31,31,31,.8) 22%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.22) 78%,rgba(31,31,31,0) 100%) border-box}
 .card img{display:block;width:100%;height:100%;object-fit:cover;border-radius:34px}
@@ -25,7 +25,7 @@ body{width:1080px;height:1440px;font-family:Geist,sans-serif;color:#fff;-webkit-
 .label{font-size:28px;font-weight:500;color:#ff3b4e;line-height:1.2;letter-spacing:-0.005em}
 .title{font-size:88px;font-weight:700;letter-spacing:-0.05em;line-height:1.04;padding-bottom:.06em;margin-top:18px;
  background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.desc{font-size:32px;line-height:1.47;color:#b4b3b7;margin-top:20px;max-width:840px;letter-spacing:-0.005em}
+.desc{font-size:32px;line-height:1.47;color:#bab8bc;margin-top:20px;max-width:840px;letter-spacing:-0.005em}
 """
 def page(body): return f'<!doctype html><html lang="ro"><head><meta charset="utf-8"><style>{CSS}</style></head><body>{body}</body></html>'
 def render(html, out):
@@ -34,8 +34,8 @@ def render(html, out):
         b=pw.chromium.launch(); pg=b.new_page(viewport={'width':1080,'height':1440},device_scale_factor=1)
         pg.goto(p.as_uri()); pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(300)
         pg.screenshot(path=str(out),full_page=False); b.close()
-def project(glow, img, label, title, desc, out, objpos='center'):
-    body=f"""<img class="glow" src="{glow}">
+def project(glow, img, label, title, desc, out, objpos='center', bg=None):
+    body=(f'<img src="{bg}" style="position:absolute;inset:0;width:1080px;height:1440px">' if bg else f'<img class="glow" src="{glow}">')+f"""
 <div class="logo">{logo_svg(40)}</div>
 <div class="card"><img src="{img}" style="object-position:{objpos}"></div>
 <div class="text"><div class="label">{label}</div><div class="title">{title}</div><div class="desc">{desc}</div></div>"""

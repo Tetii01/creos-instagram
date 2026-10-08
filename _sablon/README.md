@@ -9,3 +9,9 @@ Reproduce stilul postărilor lui David (calibrat pixel cu pixel pe X Sweets și 
 - Fonturile Geist (licență OFL, în `Geist-LICENSE.txt`).
 
 Pornire: `pip install playwright && playwright install chromium`, apoi pui poza proiectului în `assets/` și apelezi `project(...)`.
+
+## Fundalul (important)
+
+`assets/bg_project.png` e fundalul real din postarea Extaz Padel a lui David (lumina de sus, marginile, pata vișinie de jos), fără logo-ul lui. La postările de tip proiect se folosește el (`bg=`), nu lumina randată din shader, ca toate să arate la fel.
+
+Capturile de ecran de pe iPhone sunt în spațiul de culoare Display P3. Înainte să compari culori cu o postare de-a lui David, convertește captura în sRGB (PIL `ImageCms.profileToProfile`), altfel roșul pare mai stins decât e.
