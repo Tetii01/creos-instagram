@@ -19,3 +19,9 @@ Capturile de ecran de pe iPhone sunt în spațiul de culoare Display P3. Înaint
 ## Valori măsurate pe exportul original (postare de tip proiect)
 
 Logo: top 88, stânga 88, înălțime 40. Card: 88-992 × 183-930, colțuri 36. Text de la top 995: eticheta 28px Medium #ff3b4e; titlul 88px Bold, letter-spacing -0.025em, metalic, margin-top 16; descrierea 33px Regular, line-height 47px, #909099, letter-spacing 0.004em, max-width 845, margin-top 22. Verificat pe Extaz Padel: lățimile titlului și ale rândurilor de descriere ies la ±2 px.
+
+## Postarea de tip cifră (`cifra(...)`)
+
+`build.cifra(eticheta, cifra, rand_alb, out)` reproduce `referinte/cifra-25.png`. Fundalul `assets/bg_cifra.png` e exportul original al lui David, cu logo-ul și textul scoase (umplere netedă din vecinătate; în afara zonelor de text e identic cu originalul).
+
+Valori calibrate pe export (cerneala la ±1-3 px): logo top 88, stânga 88, înălțime 40; eticheta 32px Medium #ff3b4e, colț stânga-sus 88 × 906; cifra 338px Bold, letter-spacing -0.06em, metalic (gradient pe 306 px, de la y 950), colț 81 × 938; rândul alb 64px SemiBold, letter-spacing -0.04em, #fff, colț 88 × 1287. Cifra are padding-right, altfel ultima literă e tăiată de letter-spacing-ul negativ.

@@ -26,6 +26,13 @@ body{width:1080px;height:1440px;font-family:Geist,sans-serif;color:#fff;-webkit-
 .title{font-size:88px;font-weight:700;letter-spacing:-0.025em;line-height:1.04;padding-bottom:.06em;margin-top:16px;
  background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .desc{font-size:33px;line-height:47px;color:#909099;margin-top:22px;max-width:845px;letter-spacing:0.004em}
+/* tip cifra: calibrat pe exportul original cifra-25 al lui David (cerneala la ±1 px) */
+.c{position:absolute;white-space:nowrap;line-height:1}
+.clabel{left:88px;top:906px;font-size:32px;font-weight:500;color:#ff3b4e}
+.cnum{left:81px;top:938px;font-size:338px;font-weight:700;letter-spacing:-0.06em;padding:0 .12em .08em 0;
+ background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 100%);background-size:100% 306px;background-position:0 12px;background-repeat:no-repeat;
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+.csub{left:88px;top:1287px;font-size:64px;font-weight:600;letter-spacing:-0.04em;color:#fff}
 """
 def page(body): return f'<!doctype html><html lang="ro"><head><meta charset="utf-8"><style>{CSS}</style></head><body>{body}</body></html>'
 def render(html, out):
@@ -39,6 +46,12 @@ def project(glow, img, label, title, desc, out, objpos='center', bg=None):
 <div class="logo">{logo_svg(40)}</div>
 <div class="card"><img src="{img}" style="object-position:{objpos}"></div>
 <div class="text"><div class="label">{label}</div><div class="title">{title}</div><div class="desc">{desc}</div></div>"""
+    render(page(body), out)
+def cifra(label, value, sub, out, bg='assets/bg_cifra.png'):
+    """Postare de tip cifră (ca „25+”): etichetă roșie, cifra uriașă metalică, rândul alb. Fără „creos” jos."""
+    body=f'''<img src="{bg}" style="position:absolute;inset:0;width:1080px;height:1440px">
+<div class="logo">{logo_svg(40)}</div>
+<div class="c clabel">{label}</div><div class="c cnum">{value}</div><div class="c csub">{sub}</div>'''
     render(page(body), out)
 if __name__=='__main__':
     # calibrare pe X Sweets, ca să compar cu postarea lui David
