@@ -33,6 +33,22 @@ body{width:1080px;height:1440px;font-family:Geist,sans-serif;color:#fff;-webkit-
  background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 100%);background-size:100% 306px;background-position:0 12px;background-repeat:no-repeat;
  -webkit-background-clip:text;background-clip:text;color:transparent}
 .csub{left:88px;top:1287px;font-size:64px;font-weight:600;letter-spacing:-0.04em;color:#fff}
+/* tip testimonial: calibrat pe testimonial-xsweets */
+.stars{position:absolute;left:90px;top:302px;display:flex;gap:14px}
+.quote{position:absolute;left:88px;top:388px;width:910px;font-size:69px;font-weight:500;letter-spacing:-0.03em;line-height:79px;color:#909099}
+.quote b{font-weight:500;color:#fff}
+.who{position:absolute;left:88px;top:1232px;min-height:120px;display:flex;align-items:center;gap:28px}
+.who img{width:120px;height:120px;border-radius:50%;object-fit:cover}
+.wname{font-size:40px;font-weight:500;letter-spacing:-0.01em;line-height:1;color:#fff}
+.wrole{font-size:30px;font-weight:400;letter-spacing:0.01em;line-height:1;color:#909099;margin-top:15px}
+/* tip serviciu: calibrat pe serviciu-agenti-ai */
+.svc{position:absolute;left:89px;right:88px;bottom:89px}
+.stitle{font-size:176px;font-weight:700;letter-spacing:-0.05em;line-height:0.98;padding-bottom:.06em;
+ background-image:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stitle em{font-style:normal;color:#ff3b4e;-webkit-text-fill-color:#ff3b4e}
+.sdesc{font-size:37px;line-height:52px;letter-spacing:0.005em;color:#909099;margin-top:21px;max-width:845px}
+.pills{display:flex;flex-wrap:wrap;gap:15px;margin-top:49px}
+.pill{height:60px;padding:0 26px;border-radius:999px;background:#1a1a1a;border:1.5px solid #313131;display:flex;align-items:center;font-size:28px;color:#909099}
 """
 def page(body): return f'<!doctype html><html lang="ro"><head><meta charset="utf-8"><style>{CSS}</style></head><body>{body}</body></html>'
 def render(html, out):
@@ -52,6 +68,22 @@ def cifra(label, value, sub, out, bg='assets/bg_cifra.png'):
     body=f'''<img src="{bg}" style="position:absolute;inset:0;width:1080px;height:1440px">
 <div class="logo">{logo_svg(40)}</div>
 <div class="c clabel">{label}</div><div class="c cnum">{value}</div><div class="c csub">{sub}</div>'''
+    render(page(body), out)
+def testimonial(quote, name, role, out, avatar=None, bg='assets/bg_testimonial.png'):
+    """Testimonial (ca X Sweets): 5 stele, citatul cu partea importantă în <b> (albă), numele și rolul jos. Fără avatar dacă nu există."""
+    star='<svg width="40" height="38" viewBox="0 0 24 23"><path d="M12 .8l3.4 7 7.6 1-5.6 5.3 1.4 7.6L12 18l-6.8 3.7 1.4-7.6L1 8.8l7.6-1z" fill="#ff3b4e" stroke="#ff3b4e" stroke-width="1.2" stroke-linejoin="round"/></svg>'
+    av=f'<img src="{avatar}">' if avatar else ''
+    body=f'''<img src="{bg}" style="position:absolute;inset:0;width:1080px;height:1440px">
+<div class="logo">{logo_svg(40)}</div>
+<div class="stars">{star*5}</div><div class="quote">{quote}</div>
+<div class="who">{av}<div><div class="wname">{name}</div><div class="wrole">{role}</div></div></div>'''
+    render(page(body), out)
+def serviciu(title, desc, tags, out, bg='assets/bg_serviciu.png', title_size=176):
+    """Serviciu (ca Agenți AI): titlul metalic cu partea roșie în <em>, descrierea gri, pastilele cu ce include. Blocul e ancorat jos."""
+    pills=''.join(f'<div class="pill">{t}</div>' for t in tags)
+    body=f'''<img src="{bg}" style="position:absolute;inset:0;width:1080px;height:1440px">
+<div class="logo">{logo_svg(40)}</div>
+<div class="svc"><div class="stitle" style="font-size:{title_size}px">{title}</div><div class="sdesc">{desc}</div><div class="pills">{pills}</div></div>'''
     render(page(body), out)
 if __name__=='__main__':
     # calibrare pe X Sweets, ca să compar cu postarea lui David

@@ -25,3 +25,9 @@ Logo: top 88, stânga 88, înălțime 40. Card: 88-992 × 183-930, colțuri 36. 
 `build.cifra(eticheta, cifra, rand_alb, out)` reproduce `referinte/cifra-25.png`. Fundalul `assets/bg_cifra.png` e exportul original al lui David, cu logo-ul și textul scoase (umplere netedă din vecinătate; în afara zonelor de text e identic cu originalul).
 
 Valori calibrate pe export (cerneala la ±1-3 px): logo top 88, stânga 88, înălțime 40; eticheta 32px Medium #ff3b4e, colț stânga-sus 88 × 906; cifra 338px Bold, letter-spacing -0.06em, metalic (gradient pe 306 px, de la y 950), colț 81 × 938; rândul alb 64px SemiBold, letter-spacing -0.04em, #fff, colț 88 × 1287. Cifra are padding-right, altfel ultima literă e tăiată de letter-spacing-ul negativ.
+
+## Testimonial (`testimonial(...)`) și serviciu (`serviciu(...)`)
+
+`build.testimonial(citat, nume, rol, out, avatar=None)`: reproduce `referinte/testimonial-xsweets.png`, cu fundalul `assets/bg_testimonial.png` (exportul lui David fără text, stele, avatar și logo). Citatul: 69px Medium, letter-spacing -0.03em, line-height 79px, `#909099`, partea importantă în `<b>` (albă); 5 stele `#ff3b4e` la top 302. Numele 40px Medium alb, rolul 30px Regular `#909099`. Fără avatar, numele stă la stânga, la 88 px. Calibrat la ±1-8 px pe lățimea rândurilor.
+
+`build.serviciu(titlu, descriere, pastile, out, title_size=176)`: reproduce `referinte/serviciu-agenti-ai.png`, cu fundalul `assets/bg_serviciu.png`. Titlul metalic 176px Bold (-0.05em), partea roșie în `<em>`; descrierea 37px / 52px `#909099`; pastilele 60px înălțime, fond `#1a1a1a`, contur `#313131`, text 28px. Blocul e ancorat jos (ultima pastilă se termină la 1351 px), deci un titlu pe două rânduri urcă singur.
